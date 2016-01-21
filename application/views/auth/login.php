@@ -1,28 +1,47 @@
-<h1><?php echo lang('login_heading');?></h1>
-<p><?php echo lang('login_subheading');?></p>
+<!DOCTYPE html>
+<html class="bg-black">
+    <head>
+        <meta charset="UTF-8">
+        <title>任务管理系统 | 登陆</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="/assets/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-<div id="infoMessage"><?php echo $message;?></div>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="bg-black">
 
-<?php echo form_open("auth/login");?>
+        <div class="form-box" id="login-box">
+            <div class="header">登陆</div>
+            <?php echo form_open("auth/login");?>
+                <div class="body bg-gray">
+                    <div class="form-group">
+                        <?php echo form_input($identity);?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo form_input($password);?>
+                    </div>
+                </div>
+                <div class="footer">                                                               
+                    <button type="submit" class="btn bg-red btn-block">登陆</button>  
+                </div>
+            <?php echo form_close();?>
+        </div>
 
-  <p>
-    <?php echo lang('login_identity_label', 'identity');?>
-    <?php echo form_input($identity);?>
-  </p>
 
-  <p>
-    <?php echo lang('login_password_label', 'password');?>
-    <?php echo form_input($password);?>
-  </p>
+        <!-- jQuery 2.0.2 -->
+        <script src="/assets/js/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>        
 
-  <p>
-    <?php echo lang('login_remember_label', 'remember');?>
-    <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-  </p>
-
-
-  <p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
-
-<?php echo form_close();?>
-
-<p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
+    </body>
+</html>

@@ -44,6 +44,13 @@ class Company_model extends CI_Model {
         return $query->result();
     }
 
+    public function get_all_for_select()
+    {
+        $query = $this->db->select('id, name')->get($this->table);
+
+        return $query->result();
+    }
+
     public function get($id, $type = 'object')
     {
         $query = $this->db->where(array('id' => $id))->get($this->table);
