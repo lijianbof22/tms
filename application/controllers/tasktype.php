@@ -50,4 +50,13 @@ class Tasktype extends CI_Controller
 
         $this->layout->view('tasktype/view', array('tasktype' => $tasktype, 'tasktypesteps' => $tasktypesteps));
     }
+
+    public function all($page = 1) {
+        $pageNum = 10;
+        $offset = ($page - 1) * $pageNum;
+        $tasktypeNum = $this->tasktype_model->get_count();
+        $tasktypes = $this->tasktype_model->get_all($offset, $pageNum);
+
+        $this->layout->view('tasktype/list',array('counts' => $tasktypeNum, 'tasktypes' => $tasktypes, 'pageNum' => $pageNum, 'currentPage' => $page));
+    }
 }

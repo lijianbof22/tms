@@ -1,20 +1,33 @@
-<h1><?php echo lang('create_group_heading');?></h1>
-<p><?php echo lang('create_group_subheading');?></p>
+ <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            用户管理
+            <small>创建群组</small>
+            <div class="pull-right">
+                <a href="/auth" class="btn btn-danger">返回用户列表</a>
+            </div>
+        </h1>
+    </section>
 
-<div id="infoMessage"><?php echo $message;?></div>
-
-<?php echo form_open("auth/create_group");?>
-
-      <p>
-            <?php echo lang('create_group_name_label', 'group_name');?> <br />
-            <?php echo form_input($group_name);?>
-      </p>
-
-      <p>
-            <?php echo lang('create_group_desc_label', 'description');?> <br />
-            <?php echo form_input($description);?>
-      </p>
-
-      <p><?php echo form_submit('submit', lang('create_group_submit_btn'));?></p>
-
-<?php echo form_close();?>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="box box-danger">
+                    <?php echo form_open("auth/create_group");?>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="group_name">名称</label>
+                            <?php echo form_input($group_name);?>
+                        </div>  
+                        <div class="form-group">
+                            <label for="description">描述</label>
+                            <?php echo form_input($description);?>
+                        </div>
+                        <input type="submit" value="创建群组" class="btn btn-danger"/>
+                    </div>
+                    <?php echo form_close();?>
+                </div>
+            </div>
+        </div>
+    </section>

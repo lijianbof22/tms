@@ -1,20 +1,33 @@
-<h1><?php echo lang('edit_group_heading');?></h1>
-<p><?php echo lang('edit_group_subheading');?></p>
+ <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            用户管理
+            <small>编辑群组</small>
+            <div class="pull-right">
+                <a href="/auth" class="btn btn-danger">返回用户列表</a>
+            </div>
+        </h1>
+    </section>
 
-<div id="infoMessage"><?php echo $message;?></div>
-
-<?php echo form_open(current_url());?>
-
-      <p>
-            <?php echo lang('edit_group_name_label', 'group_name');?> <br />
-            <?php echo form_input($group_name);?>
-      </p>
-
-      <p>
-            <?php echo lang('edit_group_desc_label', 'description');?> <br />
-            <?php echo form_input($group_description);?>
-      </p>
-
-      <p><?php echo form_submit('submit', lang('edit_group_submit_btn'));?></p>
-
-<?php echo form_close();?>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="box box-danger">
+                    <?php echo form_open(current_url());?>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="group_name">名称</label>
+                            <?php echo form_input($group_name);?>
+                        </div>  
+                        <div class="form-group">
+                            <label for="description">描述</label>
+                            <?php echo form_input($group_description);?>
+                        </div>
+                        <input type="submit" value="更新群组" class="btn btn-danger"/>
+                    </div>
+                    <?php echo form_close();?>
+                </div>
+            </div>
+        </div>
+    </section>
