@@ -61,5 +61,11 @@ class Task extends CI_Controller
 
         $this->layout->view('task/view', array('task' => $task));
     }
+
+    public function all() {
+        $tasks = $this->task_model->get_all_tasks();
+
+        $this->layout->view('task/list',array('tasks' => $tasks));
+    }
 }
 

@@ -1,0 +1,15 @@
+.box-pedding .small-box:hover {
+    color: #00c0ef;
+}
+
+.box-processing .small-box:hover {
+    color: #00a65a;
+}
+
+.box-checking .small-box:hover {
+    color: #f39c12;
+}
+
+.box-finished .small-box:hover {
+    color: #3c8dbc;
+}

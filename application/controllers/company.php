@@ -86,8 +86,26 @@ class Company extends CI_Controller
         $offset = ($page - 1) * $pageNum;
         $companyNum = $this->company_model->get_count();
         $companies = $this->company_model->get_all($offset, $pageNum);
+        $districts = array(
+            'heping' => '和平',
+            'hedong' => '河东',
+            'hexi' => '河西',
+            'hebei' => '河北',
+            'nankai' => '南开',
+            'hongqiao' => '红桥',
+            'xiqing' => '西青',
+            'wuqing' => '武清',
+            'dongli' => '东丽',
+            'jinnan' => '津南',
+            'tanggu' => '塘沽',
+            'dagang' => '大港',
+            'hangu' => '汉沽',
+            'jinghai' => '静海',
+            'baodi' => '宝坻',
+            'jixian' => '蓟县'
+        );
 
-        $this->layout->view('company/list',array('counts' => $companyNum, 'companies' => $companies, 'pageNum' => $pageNum, 'currentPage' => $page));
+        $this->layout->view('company/list',array('counts' => $companyNum, 'companies' => $companies, 'pageNum' => $pageNum, 'currentPage' => $page, 'districts' => $districts));
     }
 
     public function view($id) {
