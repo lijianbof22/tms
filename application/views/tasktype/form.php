@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <div class="box box-danger">
-                    <?php echo form_open(); ?>
+                    <?php echo form_open('', array('id' => 'tasktype-form')); ?>
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="group_name">任务类型名称</label>
@@ -23,12 +23,11 @@
                             
                         </div>
                     </form>
-                    <div id="step_container">
+                    <div id="step_container" style="padding: 10px;">
                         <div class="box box-solid box-danger">
                             <div class="box-header">
                                 <h3 class="box-title">步骤</h3>
                                 <div class="box-tools pull-right">
-                                    <button class="btn btn-danger btn-sm" onclick="addNewStep()"><i class="fa fa-plus"></i></button>
                                     <button class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     <button class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
                                 </div>
@@ -36,15 +35,18 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="group_name">步骤名称</label>
-                                    <input type="text" name="step_name" id="step_name" class="form-control" autocomplete="off" maxlength="255" value="" />
+                                    <input type="text" name="step_name" id="step_name" class="form-control" autocomplete="off" maxlength="255" value="" onchange="jQuery(this).parents('.box:first').find('.box-title:first').html(jQuery(this).val());"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="group_name">步骤说明</label>
                                     <textarea name="step_description" id="step_description" class="form-control"></textarea>
                                 </div>
                             </div><!-- /.box-body -->
-                            <input type="submit" name="submit" value="创建任务类型" id="submit_button" class="btn btn-danger"/>
                         </div><!-- /.box -->
+                    </div>
+                    <div class="box-footer">
+                        <input type="button" name="addnewstep" value="增加步骤" id="addnew_button" class="btn btn-warning" onclick="addNewStep()"/>
+                        <input type="button" name="submit" value="创建任务类型" id="submit_button" class="btn btn-danger pull-right" onclick="submitForm()"/>
                     </div>
                 </div>
             </div>
@@ -54,8 +56,40 @@
     var index = 0;
     function addNewStep()
     {
-        var html = '<div class="form-group"><label for="group_name">步骤名称</label><input type="text" name="steps[' + index + '][name]" class="form_input" autocomplete="off" maxlength="255" value="" /></div><div class="form-group"><label for="group_name">步骤描述</label><textarea name="steps[' + index + '][description]" class="form_input"></textarea></div>';
+        var html = '<div class="box box-solid box-danger">'+
+                            '<div class="box-header">'+
+                                '<h3 class="box-title">步骤</h3>'+
+                                '<div class="box-tools pull-right">'+
+                                    '<button class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>'+
+                                    '<button class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="box-body">'+
+                                '<div class="form-group">'+
+                                    '<label for="group_name">步骤名称</label>'+
+                                    '<input type="text" name="step_name" id="step_name" class="form-control" autocomplete="off" maxlength="255" value=""  onchange="jQuery(this).parents(\'.box:first\').find(\'.box-title:first\').html(jQuery(this).val());"/>'+
+                                '</div>'+
+                                '<div class="form-group">'+
+                                    '<label for="group_name">步骤说明</label>'+
+                                    '<textarea name="step_description" id="step_description" class="form-control"></textarea>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
         $('#step_container').append(html);
         index++;
+    }
+
+    function submitForm()
+    {
+        var steps_name = jQuery('input[name=step_name]');
+        var steps_description = jQuery('textarea[name=step_description]');
+        for (var index = 0; index < steps_name.length; index++) {
+            if(jQuery(steps_name[index]).val() !== '') {
+                var hidName = jQuery('<input type="hidden" name="steps[' + index + '][name]" value="' + jQuery(steps_name[index]).val() + '"/>');
+                var hidDesc = jQuery('<input type="hidden" name="steps[' + index + '][description]" value="' + jQuery(steps_description[index]).val() + '"/>');
+                jQuery('form#tasktype-form').append(hidName).append(hidDesc);
+            }
+        }
+        jQuery('form#tasktype-form').submit();
     }
 </script>

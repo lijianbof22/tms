@@ -64,7 +64,7 @@
                                 <?php endforeach;?>
                             </select>
                         </div>
-                        <input type="submit" name="submit" value="Create Task Type" id="submit_button" class="btn btn-danger" />
+                        <input type="submit" name="submit" value="创建任务" id="submit_button" class="btn btn-danger" />
                     </div>
                 </form>
             </div>

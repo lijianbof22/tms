@@ -40,7 +40,24 @@ class Task_model extends CI_Model {
 
     public function get($id, $type = 'object')
     {
-        $query = $this->db->where(array('id' => $id))->get($this->table);
+        $query = $this->db->select($this->table . '.id as id, ' . 
+                $this->table . '.name as taskName, ' .
+                $this->table . '.description, ' .
+                $this->table . '.end_date, ' .
+                $this->table . '.latest_stage,' .
+                $this->table . '.created_date,' .
+                $this->table . '.assigned,' .
+                'company.id as companyId,' .
+                'company.name as companyName, ' .
+                'task_types.id as tasktypeId, ' .
+                'task_types.name as tasktypeName'
+//                'users.first_name as userName'
+                )
+                ->where(array($this->table . '.id' => $id))
+                ->join('company', 'company.id=' . $this->table . '.company_id', 'inner')
+                ->join('task_types', 'task_types.id=' . $this->table . '.task_type_id', 'inner')
+//                ->join('users', 'users.id=' . $this->table . '.assigned', 'left outter')
+                ->get($this->table);
 
         return $query->row(1, $type);
     }

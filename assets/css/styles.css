@@ -1,15 +1,46 @@
-.box-pedding .small-box:hover {
+.small-box:hover {
+    color: #333;
+}
+.box-unassigned .bigicon:hover {
+    color: #f56954;
+}
+
+.box-pedding .bigicon:hover {
     color: #00c0ef;
 }
 
-.box-processing .small-box:hover {
+.box-processing .bigicon:hover {
     color: #00a65a;
 }
 
-.box-checking .small-box:hover {
+.box-checking .bigicon:hover {
     color: #f39c12;
 }
 
-.box-finished .small-box:hover {
+.box-finished .bigicon:hover {
     color: #3c8dbc;
+}
+
+.small-box .bigicon {
+    font-size:60px;
+    position: absolute;
+    top: auto;
+    bottom: 5px;
+    right: 5px;
+    z-index: 0;
+    color: rgba(0, 0, 0, 0.15);
+}
+
+.nav-tabs-custom li.active {
+    background-color: #f56954;
+    border-top-color: #f56954 !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a {
+    background-color: #f56954;
+    color: #fff;
+    border-color: #f56954;
+}
+.nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a {
+    background-color: #f56954;
 }

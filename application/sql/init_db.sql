@@ -32,5 +32,6 @@ CREATE TABLE `tms`.`tasks` (
   `company_id` INT NOT NULL,
   `task_type_id` INT NOT NULL,
   `assigned` INT NULL,
+  `latest_stage` VARCHAR(45) NOT NULL DEFAULT 'pendding',
   `created_date` DATETIME NOT NULL,
   PRIMARY KEY (`id`));

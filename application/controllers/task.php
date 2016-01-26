@@ -13,7 +13,7 @@ class Task extends CI_Controller
         }
         $this->load->helper(array('url','language'));
 
-        $this->load->model(array('task_model','tasktype_model', 'ion_auth_model', 'company_model'));
+        $this->load->model(array('task_model','tasktype_model', 'tasktypestep_model', 'ion_auth_model', 'company_model'));
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
@@ -58,14 +58,41 @@ class Task extends CI_Controller
 
     public function view($id) {
         $task = $this->task_model->get($id);
+        $assigned = null;
+        if ($task->assigned) {
+            $assigned = $this->ion_auth_model->user($task->assigned)->row(1);
+        }
+        $steps = $this->tasktypestep_model->get_by_type($task->tasktypeId);
 
-        $this->layout->view('task/view', array('task' => $task));
+        $this->layout->view('task/view', array('task' => $task, 'assigned' => $assigned, 'steps' => $steps));
     }
 
     public function all() {
         $tasks = $this->task_model->get_all_tasks();
 
-        $this->layout->view('task/list',array('tasks' => $tasks));
+        $_tasks = array();
+        foreach($tasks as $task){
+            if ($task->assigned) {
+                switch($task->latest_stage) {
+                    case 'pendding':
+                        $_tasks['pendding'][] = $task;
+                        break;
+                    case 'checking':
+                        $_tasks['checking'][] = $task;
+                        break;
+                    case 'finished':
+                        $_tasks['finished'][] = $task;
+                        break;
+                    default:
+                        $_tasks['processing'][] = $task;
+                        break;
+                }
+            } else {
+                $_tasks['unassigned'][] = $task;
+            }
+        }
+
+        $this->layout->view('task/list',array('tasks' => $_tasks));
     }
 }
 
