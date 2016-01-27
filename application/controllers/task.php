@@ -15,7 +15,8 @@ class Task extends CI_Controller
         }
         
         $uri_string = explode('/', uri_string());
-        if (!$this->ion_auth->is_admin() && $uri_string[1] !== 'view') {
+        $excludeAction = array('view', 'stage');
+        if (!$this->ion_auth->is_admin() && !in_array($uri_string[1], $excludeAction)) {
             redirect('dashboard');
         }
 
