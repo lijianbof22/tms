@@ -2,7 +2,7 @@
     <section class="content-header">
         <h1>
             公司管理
-            <small>创建公司</small>
+            <small>编辑公司</small>
             <div class="pull-right">
                 <a href="/company/all" class="btn btn-danger">返回公司列表</a>
             </div>
@@ -17,13 +17,13 @@
                     <?php echo form_open(); ?>
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="company_name" class="form_label">Company Name</label>
+                                <label for="company_name" class="form_label">公司名称</label>
                                 <input type="text" name="company_name" id="company_name" class="form-control" autocomplete="off" maxlength="255" value="<?php echo $company->name;?>" />
                             </div>
                             <div class="form-group">
-                                <label for="district" class="form_label">District</label>
+                                <label for="district" class="form_label">所在区县</label>
                                 <select name="district" id="district" class="form-control">
-                                    <option> -- Select -- </option>
+                                    <option> -- 选择 -- </option>
                                     <option value="heping" <?php echo $company->district == "heping" ? 'selected="selected"' : '';?>>和平</option>
                                     <option value="hedong" <?php echo $company->district == "hedong" ? 'selected="selected"' : '';?>>河东</option>
                                     <option value="hexi" <?php echo $company->district == "hexi" ? 'selected="selected"' : '';?>>河西</option>
@@ -44,31 +44,31 @@
                             </div>
                             <div class="form-group">
                                 <br />
-                                <label for="address" class="form_label">Address</label>
+                                <label for="address" class="form_label">地址</label>
                                 <input type="text" name="address" id="address" class="form-control" value="<?php echo $company->address;?>" autocomplete="off"/>               
                             </div>
                             <div class="form-group">
                                 <br />
-                                <label for="contact" class="form_label">Contact</label>
+                                <label for="contact" class="form_label">联系人</label>
                                 <input type="text" name="contact" id="contact" class="form-control" value="<?php echo $company->contact;?>" autocomplete="off"/>               
                             </div>
                             <div class="form-group">
                                 <br />
-                                <label for="phone" class="form_label">Phone</label>
+                                <label for="phone" class="form_label">固定电话</label>
                                 <input type="text" name="phone" id="phone" class="form-control" value="<?php echo $company->phone;?>" autocomplete="off"/>               
                             </div>
                             <div class="form-group">
                                 <br />
-                                <label for="fax" class="form_label">Fax</label>
+                                <label for="fax" class="form_label">传真</label>
                                 <input type="text" name="fax" id="fax" class="form-control" value="<?php echo $company->fax;?>" autocomplete="off"/>               
                             </div>
                             <div class="form-group">
                                 <br />
-                                <label for="mobile" class="form_label">Mobile</label>
+                                <label for="mobile" class="form_label">移动电话</label>
                                 <input type="text" name="mobile" id="mobile" class="form-control" value="<?php echo $company->mobile;?>" autocomplete="off"/>               
                             </div>
                             <input type="hidden" name="id" id="id" value="<?php echo $company->id;?>"/>
-                            <input type="submit" name="submit" value="Update Company" id="submit_button" class="btn btn-danger" />
+                            <input type="submit" name="submit" value="更新公司" id="submit_button" class="btn btn-danger" />
                         </div>
                     </form>
                 </div>

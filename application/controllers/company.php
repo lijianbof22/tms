@@ -11,6 +11,11 @@ class Company extends CI_Controller
         if (!$this->ion_auth->logged_in()) {
             redirect("auth/login", 'refresh');
         }
+
+        if (!$this->ion_auth->is_admin()) {
+            redirect('dashboard');
+        }
+
         $this->load->helper(array('url','language'));
 
         $this->load->model('company_model');
@@ -82,7 +87,7 @@ class Company extends CI_Controller
     }
 
     public function all($page = 1) {
-        $pageNum = 2;
+        $pageNum = 20;
         $offset = ($page - 1) * $pageNum;
         $companyNum = $this->company_model->get_count();
         $companies = $this->company_model->get_all($offset, $pageNum);

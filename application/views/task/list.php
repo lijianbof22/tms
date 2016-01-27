@@ -24,9 +24,9 @@
                             <div class="inner">
                                 <p>
                                     <label style="min-width: 50px;text-align: center;background-color: #999;color:#fff;"><?php echo $task->id;?></label>
-                                    <label><?php echo $task->name?></label>
+                                    <label><?php echo $task->taskName?></label>
                                 </p>
-                                <p><label>公司：</label><?php echo $task->company_id;?></p>
+                                <p><label>公司：</label><?php echo $task->companyName;?></p>
                             </div>
                             <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -49,9 +49,10 @@
                             <div class="inner">
                                 <p>
                                     <label style="min-width: 50px;text-align: center;background-color: #999;color:#fff;"><?php echo $task->id;?></label>
-                                    <label><?php echo $task->name?></label>
+                                    <label><?php echo $task->taskName?></label>
                                 </p>
-                                <p><label>公司：</label><?php echo $task->company_id;?></p>
+                                <p><label>公司：</label><?php echo $task->companyName;?></p>
+                                <p><label> 分配：</label><?php echo $task->userName;?></p>
                             </div>
                             <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -74,9 +75,10 @@
                             <div class="inner">
                                 <p>
                                     <label style="min-width: 50px;text-align: center;background-color: #999;color:#fff;"><?php echo $task->id;?></label>
-                                    <label><?php echo $task->name?></label>
+                                    <label><?php echo $task->taskName?></label>
                                 </p>
-                                <p><label>公司：</label><?php echo $task->company_id;?></p>
+                                <p><label>公司：</label><?php echo $task->companyName;?></p>
+                                <p><label> 分配：</label><?php echo $task->userName;?></p>
                             </div>
                             <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -99,9 +101,10 @@
                             <div class="inner">
                                 <p>
                                     <label style="min-width: 50px;text-align: center;background-color: #999;color:#fff;"><?php echo $task->id;?></label>
-                                    <label><?php echo $task->name?></label>
+                                    <label><?php echo $task->taskName?></label>
                                 </p>
-                                <p><label>公司：</label><?php echo $task->company_id;?></p>
+                                <p><label>公司：</label><?php echo $task->companyName;?></p>
+                                <p><label> 分配：</label><?php echo $task->userName;?></p>
                             </div>
                             <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -114,9 +117,4 @@
             </div>
         </div>
     </div>
-</section><a href="#myModal" role="button" class="btn" data-toggle="modal">查看演示案例</a>
-<script>
-    function showTaskDetail(taskId) {
-        alert(taskId);
-    }
-</script>
+</section>

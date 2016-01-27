@@ -44,15 +44,41 @@ class Tasktype extends CI_Controller
         }
     }
 
+    public function edit($id)
+    {
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+
+            $tasktypeName = $this->input->post('tasktype_name');
+            $steps = $this->input->post('steps');
+
+            $tasktypeId = $this->tasktype_model->update_tasktype(
+                array(
+                    'id' => $id,
+                    'name' => $tasktypeName,
+                )
+            );
+
+            $this->tasktypestep_model->delete_tasktypesteps_by_type($id);
+            foreach ($steps as $order => $step) {
+                $this->tasktypestep_model->create_tasktypestep(array('name' => $step['name'], 'description' => $step['description'], 'task_type_id' => $id, 'order' => ($order + 1)));
+            }
+            redirect('tasktype/view/' . $id);
+        } else {
+            $tasktype = $this->tasktype_model->get($id);
+            $steps = $this->tasktypestep_model->get_by_type($id);
+            $this->layout->view('tasktype/edit',array('tasktype' => $tasktype, 'tasktypesteps' => $steps));
+        }
+    }
+
     public function view($id) {
         $tasktype = $this->tasktype_model->get($id);
         $tasktypesteps = $this->tasktypestep_model->get_by_type($id);
 
-        $this->layout->view('tasktype/view', array('tasktype' => $tasktype, 'tasktypesteps' => $tasktypesteps));
+        $this->layout->view('tasktype/view', array('tasktype' => $tasktype, 'steps' => $tasktypesteps));
     }
 
     public function all($page = 1) {
-        $pageNum = 10;
+        $pageNum = 20;
         $offset = ($page - 1) * $pageNum;
         $tasktypeNum = $this->tasktype_model->get_count();
         $tasktypes = $this->tasktype_model->get_all($offset, $pageNum);

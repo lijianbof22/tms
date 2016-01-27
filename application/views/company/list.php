@@ -22,7 +22,7 @@
                                     <td>所在区县</td>
                                     <td>联系人</td>
                                     <td>固定电话</td>
-                                    <td>手机</td>
+                                    <td>移动电话</td>
                                     <td>操作</td>
                                 </tr>
                             </thead>
@@ -39,16 +39,18 @@
                             </tr>
                             <?php endforeach; ?>
                         </table>
-                        <a href="/company/all">First</a>
-                        <?php if ($currentPage > 1):?>
-                        <a href="/company/all/<?php echo $currentPage - 1;?>">Previous</a>
-                        <?php endif;?>
-                        <?php if ($currentPage < ceil($counts / $pageNum)):?>
-                        <a href="/company/all/<?php echo $currentPage + 1;?>">Next</a>
-                        <?php endif;?>
-                        <a href="/company/all/<?php echo ceil($counts / $pageNum);?>">Last</a>
-                        <input id="goto" type="text" value="<?php $currentPage?>"/>
-                        <input type="button" onclick="window.location = '/company/all/' + $('#goto').val();" value="Go"/>
+                        <?php if (ceil($counts / $pageNum) > 1):?>
+                            <a href="/company/all">首页</a>
+                            <?php if ($currentPage > 1):?>
+                            <a href="/company/all/<?php echo $currentPage - 1;?>">上一页</a>
+                            <?php endif;?>
+                            <?php if ($currentPage < ceil($counts / $pageNum)):?>
+                            <a href="/company/all/<?php echo $currentPage + 1;?>">下一页</a>
+                            <?php endif;?>
+                            <a href="/company/all/<?php echo ceil($counts / $pageNum);?>">尾页</a>
+                            <input id="goto" type="text" value="<?php echo $currentPage?>" style="width:30px;"/>
+                            <input type="button" onclick="window.location = '/company/all/' + $('#goto').val();" value="Go" style="width:40px;"/>
+                        <?php endif ;?>
                     </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@
                                 <input type="text" name="company_name" id="company_name" class="form-control" autocomplete="off" maxlength="255" value="" />
                             </div>
                             <div class="form-group">
-                                <label for="district" class="form_label">District</label>
+                                <label for="district" class="form_label">所在区县</label>
                                 <select name="district" id="district" class="form-control">
                                     <option> -- Select -- </option>
                                     <option value="heping">和平</option>
@@ -43,23 +43,23 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="address" class="form_label">Address</label>
+                                <label for="address" class="form_label">地址</label>
                                 <input type="text" name="address" id="address" class="form-control" value="" autocomplete="off"/>
                             </div>
                             <div class="form-group">
-                                <label for="contact" class="form_label">Contact</label>
+                                <label for="contact" class="form_label">联系人</label>
                                 <input type="text" name="contact" id="contact" class="form-control" value="" autocomplete="off"/>
                             </div>
                             <div class="form-group">
-                                <label for="phone" class="form_label">Phone</label>
+                                <label for="phone" class="form_label">固定电话</label>
                                 <input type="text" name="phone" id="phone" class="form-control" value="" autocomplete="off"/>
                             </div>
                             <div class="form-group">
-                                <label for="fax" class="form_label">Fax</label>
+                                <label for="fax" class="form_label">传真</label>
                                 <input type="text" name="fax" id="fax" class="form-control" value="" autocomplete="off"/>
                             </div>
                             <div class="form-group">
-                                <label for="mobile" class="form_label">Mobile</label>
+                                <label for="mobile" class="form_label">移动电话</label>
                                 <input type="text" name="mobile" id="mobile" class="form-control" value="" autocomplete="off"/>
                             </div>
                             <input type="submit" name="submit" value="创建公司" id="submit_button" class="btn btn-danger"/>

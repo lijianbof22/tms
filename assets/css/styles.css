@@ -44,3 +44,15 @@
 .nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a {
     background-color: #f56954;
 }
+
+.skin-blue .logo{
+    background-color: #f4543c;
+}
+
+.skin-blue .navbar{
+    background-color: #f56954;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header {
+    background-color: #f56954 !important;
+}

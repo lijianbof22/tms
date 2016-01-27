@@ -26,23 +26,25 @@
                             <tr>
                                 <td><?php echo $tasktype->name;?></td>
                                 <td>
-                                    <a href="/tasktype/edit/<?php echo $tasktype->id;?>">Edit</a>
+                                    <a href="/tasktype/edit/<?php echo $tasktype->id;?>">编辑</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
                         </table>
                     </div>
+                    <?php if (ceil($counts / $pageNum) > 1):?>
+                        <a href="/tasktype/all">首页</a>
+                        <?php if ($currentPage > 1):?>
+                        <a href="/tasktype/all/<?php echo $currentPage - 1;?>">上一页</a>
+                        <?php endif;?>
+                        <?php if ($currentPage < ceil($counts / $pageNum)):?>
+                        <a href="/tasktype/all/<?php echo $currentPage + 1;?>">下一页</a>
+                        <?php endif;?>
+                        <a href="/tasktype/all/<?php echo ceil($counts / $pageNum);?>">尾页</a>
+                        <input id="goto" type="text" value="<?php echo $currentPage?>" style="width:30px;"/>
+                        <input type="button" onclick="window.location = '/tasktype/all/' + $('#goto').val();" value="Go" style="width:40px;"/>
+                    <?php endif;?>
             </div>
         </div>
     </div>
 </section>
-            <a href="/tasktype/all">First</a>
-            <?php if ($currentPage > 1):?>
-            <a href="/tasktype/all/<?php echo $currentPage - 1;?>">Previous</a>
-            <?php endif;?>
-            <?php if ($currentPage < ceil($counts / $pageNum)):?>
-            <a href="/tasktype/all/<?php echo $currentPage + 1;?>">Next</a>
-            <?php endif;?>
-            <a href="/tasktype/all/<?php echo ceil($counts / $pageNum);?>">Last</a>
-            <input id="goto" type="text" value="<?php $currentPage?>"/>
-            <input type="button" onclick="window.location = '/tasktype/all/' + $('#goto').val();" value="Go"/>

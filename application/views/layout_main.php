@@ -53,22 +53,22 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
+                                <span><?php echo $userdata['username'];?> <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue" style="height: 60px;">
                                     <p>
-                                        Jane Doe - Web Developer
+                                        <?php echo $userdata['username'];?>
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="#" class="btn btn-default btn-flat">我的资料</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="/auth/logout" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="/auth/logout" class="btn btn-default btn-flat">退出</a>
                                     </div>
                                 </li>
                             </ul>
@@ -99,6 +99,7 @@
                                 <i class="fa fa-dashboard"></i> <span>工作台</span>
                             </a>
                         </li>
+                        <?php if ($isAdmin):?>
                         <li>
                             <a href="/task/all">
                                 <i class="fa fa-tasks"></i> <span>任务管理</span>
@@ -124,6 +125,7 @@
                                 <li><a href="/tasktype/all"><i class="fa fa-angle-double-right"></i> 任务类型</a></li>
                             </ul>
                         </li>
+                        <?php endif;?>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -147,7 +149,7 @@
         <!-- Bootstrap -->
         <script src="/assets/js/bootstrap.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>-->
         <script src="/assets/js/plugins/morris/morris.js" type="text/javascript"></script>
         <!-- Sparkline -->
         <script src="/assets/js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
@@ -168,6 +170,11 @@
         <!-- AdminLTE App -->
         <script src="/assets/js/AdminLTE/app.js" type="text/javascript"></script>
 
+<!--        <script>
+            $(document).ready(function() {
+                $('#end_date').datepicker({'dateFormat': "yy-mm-dd"});
+            });
+        </script>-->
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <!--<script src="/assets/js/AdminLTE/dashboard.js" type="text/javascript"></script>-->
 
