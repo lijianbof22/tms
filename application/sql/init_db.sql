@@ -8,12 +8,12 @@ CREATE TABLE `tms`.`company` (
   `fax` VARCHAR(45) NULL,
   `mobile` VARCHAR(45) NULL,
   `created` DATETIME NOT NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;;
 
 CREATE TABLE `tms`.`task_types` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;;
 
 CREATE TABLE `tms`.`task_type_steps` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -21,7 +21,7 @@ CREATE TABLE `tms`.`task_type_steps` (
   `description` TEXT NOT NULL,
   `task_type_id` INT NOT NULL,
   `order` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;;
 
 CREATE TABLE `tms`.`tasks` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -34,4 +34,4 @@ CREATE TABLE `tms`.`tasks` (
   `assigned` INT NULL,
   `latest_stage` VARCHAR(45) NOT NULL DEFAULT 'pendding',
   `created_date` DATETIME NOT NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;;
