@@ -21,7 +21,7 @@
     <body class="bg-black">
 
         <div class="form-box" id="login-box">
-            <div class="header">登陆</div>
+            <div class="header">任务管理系统 v<?php print_r($this->config->item('version'));?></div>
             <?php echo form_open("auth/login");?>
                 <div class="body bg-gray">
                     <div class="form-group">

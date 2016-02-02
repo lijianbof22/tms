@@ -23,23 +23,10 @@
                             <div class="form-group">
                                 <label for="district" class="form_label">所在区县</label>
                                 <select name="district" id="district" class="form-control">
-                                    <option> -- Select -- </option>
-                                    <option value="heping">和平</option>
-                                    <option value="hedong">河东</option>
-                                    <option value="hexi">河西</option>
-                                    <option value="hebei">河北</option>
-                                    <option value="nankai">南开</option>
-                                    <option value="hongqiao">红桥</option>
-                                    <option value="xiqing">西青</option>
-                                    <option value="wuqing">武清</option>
-                                    <option value="dongli">东丽</option>
-                                    <option value="jinnan">津南</option>
-                                    <option value="tanggu">塘沽</option>
-                                    <option value="dagang">大港</option>
-                                    <option value="hangu">汉沽</option>
-                                    <option value="jinghai">静海</option>
-                                    <option value="baodi">宝坻</option>
-                                    <option value="jixian">蓟县</option>
+                                    <option> -- 请选择 -- </option>
+                                    <?php foreach ($districts as $district):?>
+                                    <option value="<?php echo $district->code;?>"><?php echo $district->name;?></option>
+                                    <?php endforeach;?>
                                 </select>
                             </div>
                             <div class="form-group">

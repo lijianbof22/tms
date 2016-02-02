@@ -23,23 +23,10 @@
                             <div class="form-group">
                                 <label for="district" class="form_label">所在区县</label>
                                 <select name="district" id="district" class="form-control">
-                                    <option> -- 选择 -- </option>
-                                    <option value="heping" <?php echo $company->district == "heping" ? 'selected="selected"' : '';?>>和平</option>
-                                    <option value="hedong" <?php echo $company->district == "hedong" ? 'selected="selected"' : '';?>>河东</option>
-                                    <option value="hexi" <?php echo $company->district == "hexi" ? 'selected="selected"' : '';?>>河西</option>
-                                    <option value="hebei" <?php echo $company->district == "hebei" ? 'selected="selected"' : '';?>>河北</option>
-                                    <option value="nankai" <?php echo $company->district == "nankai" ? 'selected="selected"' : '';?>>南开</option>
-                                    <option value="hongqiao" <?php echo $company->district == "hongqiao" ? 'selected="selected"' : '';?>>红桥</option>
-                                    <option value="xiqing" <?php echo $company->district == "xiqing" ? 'selected="selected"' : '';?>>西青</option>
-                                    <option value="wuqing" <?php echo $company->district == "wuqing" ? 'selected="selected"' : '';?>>武清</option>
-                                    <option value="dongli" <?php echo $company->district == "dongli" ? 'selected="selected"' : '';?>>东丽</option>
-                                    <option value="jinnan" <?php echo $company->district == "jinnan" ? 'selected="selected"' : '';?>>津南</option>
-                                    <option value="tanggu" <?php echo $company->district == "tanggu" ? 'selected="selected"' : '';?>>塘沽</option>
-                                    <option value="dagang" <?php echo $company->district == "dagang" ? 'selected="selected"' : '';?>>大港</option>
-                                    <option value="hangu" <?php echo $company->district == "hangu" ? 'selected="selected"' : '';?>>汉沽</option>
-                                    <option value="jinghai" <?php echo $company->district == "jinghai" ? 'selected="selected"' : '';?>>静海</option>
-                                    <option value="baodi" <?php echo $company->district == "baodi" ? 'selected="selected"' : '';?>>宝坻</option>
-                                    <option value="jixian" <?php echo $company->district == "jixian" ? 'selected="selected"' : '';?>>蓟县</option>
+                                    <option> -- 请选择 -- </option>
+                                    <?php foreach ($districts as $district):?>
+                                    <option value="<?php echo $district->code;?>" <?php echo $company->district == $district->code ? 'selected="selected"' : '';?>><?php echo $district->name;?></option>
+                                    <?php endforeach;?>
                                 </select>                            
                             </div>
                             <div class="form-group">

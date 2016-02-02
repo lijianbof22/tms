@@ -18,7 +18,7 @@ class Company extends CI_Controller
 
         $this->load->helper(array('url','language'));
 
-        $this->load->model('company_model');
+        $this->load->model(array('company_model', 'systype_model'));
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
@@ -55,7 +55,8 @@ class Company extends CI_Controller
                 redirect('company/view/' . $companyId);
             }
         } else {
-            $this->layout->view('company/form',array());
+            $districts = $this->systype_model->get_all_for_select('district');
+            $this->layout->view('company/form',array('districts' => $districts));
         }
     }
 
@@ -80,7 +81,8 @@ class Company extends CI_Controller
         } else {
             if($id) {
                 $company = $this->company_model->get($id);
-                $this->layout->view('company/edit',array('company' => $company));
+                $districts = $this->systype_model->get_all_for_select('district');
+                $this->layout->view('company/edit',array('company' => $company, 'districts' => $districts));
             }
         }
         
@@ -91,24 +93,11 @@ class Company extends CI_Controller
         $offset = ($page - 1) * $pageNum;
         $companyNum = $this->company_model->get_count();
         $companies = $this->company_model->get_all($offset, $pageNum);
-        $districts = array(
-            'heping' => '和平',
-            'hedong' => '河东',
-            'hexi' => '河西',
-            'hebei' => '河北',
-            'nankai' => '南开',
-            'hongqiao' => '红桥',
-            'xiqing' => '西青',
-            'wuqing' => '武清',
-            'dongli' => '东丽',
-            'jinnan' => '津南',
-            'tanggu' => '塘沽',
-            'dagang' => '大港',
-            'hangu' => '汉沽',
-            'jinghai' => '静海',
-            'baodi' => '宝坻',
-            'jixian' => '蓟县'
-        );
+        $_districts = $this->systype_model->get_all_for_select('district');
+        $districts = array();
+        foreach ($_districts as $d) {
+            $districts[$d->code] = $d->name;
+        }
 
         $this->layout->view('company/list',array('counts' => $companyNum, 'companies' => $companies, 'pageNum' => $pageNum, 'currentPage' => $page, 'districts' => $districts));
     }

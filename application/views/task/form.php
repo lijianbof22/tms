@@ -19,27 +19,27 @@
                         <div class="form-group">
                             <label for="company" class="form_label">公司</label>
                             <select id="company_id" name="company_id" class="form-control">
-                                <option value=""> -- Select -- </option>
+                                <option value=""> -- 请选择 -- </option>
                                 <?php foreach ($companies as $company) :?>
                                 <option value="<?php echo $company->id;?>"><?php echo $company->name;?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="tasktype" class="form_label">Task Type</label>
+                            <label for="tasktype" class="form_label">任务类型</label>
                             <select id="task_type_id" name="task_type_id" class="form-control">
-                                <option value=""> -- Select -- </option>
+                                <option value=""> -- 请选择 -- </option>
                                 <?php foreach ($tasktypes as $type) :?>
                                 <option value="<?php echo $type->id;?>"><?php echo $type->name;?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="taskname" class="form_label">Task Name</label>
+                            <label for="taskname" class="form_label">任务名称</label>
                             <input type="text" name="task_name" id="task_name" class="form-control" autocomplete="off" maxlength="255" value="" />
                         </div>
                         <div class="form-group">
-                            <label for="description" class="form_label">Task Description</label>
+                            <label for="description" class="form_label">任务描述</label>
                             <textarea name="description" class="form-control"></textarea>
                         </div>
 <!--                        <div class="form-group">
@@ -56,11 +56,11 @@
                             </select>
                         </div>-->
                         <div class="form-group">
-                            <label for="assigned" class="form_label">Assign To</label>
+                            <label for="assigned" class="form_label">任务指派</label>
                             <select id="assigned" name="assigned" class="form-control">
-                                <option value=""> -- Select -- </option>
+                                <option value=""> -- 请选择 -- </option>
                                 <?php foreach ($users as $user) :?>
-                                <option value="<?php echo $user->id;?>"><?php echo $user->first_name;?> <?php echo $user->last_name;?></option>
+                                <option value="<?php echo $user->id;?>"><?php echo $user->first_name;?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>

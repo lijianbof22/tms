@@ -3,6 +3,9 @@
         <h1>
             工作台
             <small>我的任务</small>
+            <div class="pull-right">
+                <a href="/task/create" class="btn btn-danger">创建任务</a>
+            </div>
         </h1>
     </section>
 

@@ -36,7 +36,7 @@
         <header class="header">
             <a href="/" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                任务管理系统
+                任务管理系统 v<?php echo $this->config->item('version');?>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -123,6 +123,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="/tasktype/all"><i class="fa fa-angle-double-right"></i> 任务类型</a></li>
+                                <li><a href="/systype/all/district"><i class="fa fa-angle-double-right"></i> 区县管理</a></li>
                             </ul>
                         </li>
                         <?php endif;?>
