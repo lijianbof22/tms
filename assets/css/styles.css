@@ -1,6 +1,9 @@
 .small-box:hover {
     color: #333;
 }
+.small-box p {
+    margin: 0px;
+}
 .box-unassigned .bigicon:hover {
     color: #f56954;
 }
@@ -22,10 +25,10 @@
 }
 
 .small-box .bigicon {
-    font-size:60px;
+    font-size:40px;
     position: absolute;
-    top: auto;
-    bottom: 5px;
+    top: 5px;
+    bottom: auto;
     right: 5px;
     z-index: 0;
     color: rgba(0, 0, 0, 0.15);
@@ -55,4 +58,43 @@
 
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
     background-color: #f56954 !important;
+}
+
+.box-processing .tooltip-inner,
+.box-unassigned .tooltip-inner,
+.box-checking .tooltip-inner,
+.box-pedding .tooltip-inner{
+    background-color: #fff;
+    border: 2px solid #f56954;
+    color: #000;
+    box-shadow: 15px 20px 15px #333333;
+}
+
+.box-processing .tooltip-inner label,
+.box-unassigned .tooltip-inner label,
+.box-checking .tooltip-inner label,
+.box-pedding .tooltip-inner label{
+    color: #f56954;
+}
+
+.box-processing .tooltip-arrow,
+.box-unassigned .tooltip-arrow,
+.box-pedding .tooltip-arrow,
+.box-checking .tooltip-arrow{
+    border-right-color: #f56954 !important;
+}
+
+.box-processing span i,
+.box-unassigned span i,
+.box-pedding span i,
+.box-checking span i{
+    width: 20px;
+    text-align: center;
+}
+
+.box-processing span,
+.box-unassigned span,
+.box-pedding span,
+.box-checking span{
+    font-size: 12px;
 }

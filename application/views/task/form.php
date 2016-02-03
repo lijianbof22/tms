@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tasktype" class="form_label">任务类型</label>
-                            <select id="task_type_id" name="task_type_id" class="form-control">
+                            <select id="task_type_id" name="task_type_id" class="form-control" onchange="setTaskName(this)">
                                 <option value=""> -- 请选择 -- </option>
                                 <?php foreach ($tasktypes as $type) :?>
                                 <option value="<?php echo $type->id;?>"><?php echo $type->name;?></option>
@@ -70,3 +70,9 @@
             </div>
         </div>
     </section>
+    <script>
+        function setTaskName(obj){
+            var tasktype = $(obj).find("option:selected").text();
+            $('input#task_name').val(tasktype);
+        }
+    </script>

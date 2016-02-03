@@ -15,12 +15,12 @@ class Task extends CI_Controller
         }
         
         $uri_string = explode('/', uri_string());
-        $excludeAction = array('view', 'stage', 'create');
+        $excludeAction = array('view', 'stage', 'create', 'search', 'edit', 'log');
         if (!$this->ion_auth->is_admin() && !in_array($uri_string[1], $excludeAction)) {
             redirect('dashboard');
         }
 
-        $this->load->model(array('task_model','tasktype_model', 'tasktypestep_model', 'ion_auth_model', 'company_model'));
+        $this->load->model(array('task_model','tasktype_model', 'tasktypestep_model', 'ion_auth_model', 'company_model', 'tasklog_model'));
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
@@ -104,13 +104,21 @@ class Task extends CI_Controller
             $assigned = $this->ion_auth_model->user($task->assigned)->row(1);
         }
         $steps = $this->tasktypestep_model->get_by_type($task->tasktypeId);
+        $logs = $this->tasklog_model->get_all_by_task($id);
         $stageSelect = array(
             'pendding' => '未开始',
             'processing' => '进行中',
             'checking' => '检查中',
             'finished' => '已完成'
         );
-        $this->layout->view('task/view', array('task' => $task, 'assigned' => $assigned, 'steps' => $steps, 'stageSelect' => $stageSelect));
+        $this->layout->view('task/view', array(
+            'task' => $task,
+            'assigned' => $assigned,
+            'steps' => $steps,
+            'stageSelect' => $stageSelect,
+            'logs' => $logs
+            )
+        );
     }
 
     public function stage($id, $stage) {
@@ -144,6 +152,34 @@ class Task extends CI_Controller
         }
 
         $this->layout->view('task/list',array('tasks' => $_tasks));
+    }
+
+    public function log($id)
+    {
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            $log = array();
+            $log['task_id'] = $id;
+            $log['note'] = $this->input->post('tasklog');
+            $log['author'] = $this->session->userdata('user_id');
+
+            $logId = $this->tasklog_model->create_tasklog($log);
+        }
+        redirect('task/view/' . $id);
+    }
+
+    public function search()
+    {
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            $q = $this->input->post('q');
+            if (!isset($q)) {
+                redirect('/');
+            }
+            $task = $this->task_model->get($q);
+            if (!isset($task)){
+                redirect('/');
+            }
+            redirect('/task/view/' . $q);
+        }
     }
 }
 

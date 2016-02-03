@@ -24,12 +24,13 @@
                             <div class="inner">
                                 <p>
                                     <label style="min-width: 50px;text-align: center;background-color: #999;color:#fff;"><?php echo $task->id;?></label>
-                                    <label><?php echo $task->taskName?></label>
+                                    <label><?php echo $task->tasktypeName?></label>
+                                    <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
                                 </p>
-                                <p><label>公司：</label><?php echo $task->companyName;?></p>
-                            </div>
-                            <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
-                                <i class="fa fa-arrow-circle-right"></i>
+                                <p><span><i class='fa fa-map-marker'></i><?php echo $task->districtName;?></span></p>
+                                <p><span><i class='fa fa-briefcase'></i><?php echo substr($task->companyName, 0, 18);?></span></p>
                             </div>
                         </div>
                         <?php } ?>
@@ -49,13 +50,14 @@
                             <div class="inner">
                                 <p>
                                     <label style="min-width: 50px;text-align: center;background-color: #999;color:#fff;"><?php echo $task->id;?></label>
-                                    <label><?php echo $task->taskName?></label>
+                                    <label><?php echo $task->tasktypeName?></label>
+                                    <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
                                 </p>
-                                <p><label>公司：</label><?php echo $task->companyName;?></p>
-                                <p><label> 分配：</label><?php echo $task->userName;?></p>
-                            </div>
-                            <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
-                                <i class="fa fa-arrow-circle-right"></i>
+                                <p><span><i class='fa fa-map-marker'></i><?php echo $task->districtName;?></span></p>
+                                <p><span><i class='fa fa-briefcase'></i><?php echo substr($task->companyName, 0, 18);?></span></p>
+                                <p><span><i class='fa fa-user'></i><?php echo $task->userName;?></span></p>
                             </div>
                         </div>
                         <?php } ?>
@@ -75,13 +77,14 @@
                             <div class="inner">
                                 <p>
                                     <label style="min-width: 50px;text-align: center;background-color: #999;color:#fff;"><?php echo $task->id;?></label>
-                                    <label><?php echo $task->taskName?></label>
+                                    <label><?php echo $task->tasktypeName?></label>
+                                    <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
                                 </p>
-                                <p><label>公司：</label><?php echo $task->companyName;?></p>
-                                <p><label> 分配：</label><?php echo $task->userName;?></p>
-                            </div>
-                            <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
-                                <i class="fa fa-arrow-circle-right"></i>
+                                <p><span><i class='fa fa-map-marker'></i><?php echo $task->districtName;?></span></p>
+                                <p><span><i class='fa fa-briefcase'></i><?php echo substr($task->companyName, 0, 18);?></span></p>
+                                <p><span><i class='fa fa-user'></i><?php echo $task->userName;?></span></p>
                             </div>
                         </div>
                         <?php } ?>
@@ -101,13 +104,14 @@
                             <div class="inner">
                                 <p>
                                     <label style="min-width: 50px;text-align: center;background-color: #999;color:#fff;"><?php echo $task->id;?></label>
-                                    <label><?php echo $task->taskName?></label>
+                                    <label><?php echo $task->tasktypeName?></label>
+                                    <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
                                 </p>
-                                <p><label>公司：</label><?php echo $task->companyName;?></p>
-                                <p><label> 分配：</label><?php echo $task->userName;?></p>
-                            </div>
-                            <div class="bigicon" style="cursor: pointer;" onclick="window.location = '/task/view/<?php echo $task->id;?>'">
-                                <i class="fa fa-arrow-circle-right"></i>
+                                <p><span><i class='fa fa-map-marker'></i><?php echo $task->districtName;?></span></p>
+                                <p><span><i class='fa fa-briefcase'></i><?php echo substr($task->companyName, 0, 18);?></span></p>
+                                <p><span><i class='fa fa-user'></i><?php echo $task->userName;?></span></p>
                             </div>
                         </div>
                         <?php } ?>

@@ -31,4 +31,13 @@ INSERT INTO `tms`.`sys_types` (`type`, `name`, `code`, `description`) VALUES
 ('district', '东疆港', 'dongjianggang', NULL),
 ('district', '中心商务区', 'zhongxinshangwu', NULL);
 
+CREATE TABLE IF NOT EXISTS `task_logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `task_id` int(11) NOT NULL,
+  `note` text NOT NULL,
+  `author` int(11) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 

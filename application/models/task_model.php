@@ -47,10 +47,14 @@ class Task_model extends CI_Model {
                 $this->table . '.assigned,' .
                 'company.id as companyId,' .
                 'company.name as companyName, ' .
-                'users.first_name as userName'
+                'sys_types.name as districtName, ' .
+                'users.first_name as userName, ' .
+                'task_types.name as tasktypeName'
                 )
                 ->join('company', 'company.id=' . $this->table . '.company_id', 'inner')
+                ->join('sys_types', 'sys_types.code=company.district', 'inner')
                 ->join('users', 'users.id=' . $this->table . '.assigned', 'left')
+                ->join('task_types', 'task_types.id=' . $this->table . '.task_type_id', 'inner')
                 ->get($this->table);
 
         return $query->result();
@@ -67,11 +71,15 @@ class Task_model extends CI_Model {
                 $this->table . '.assigned,' .
                 'company.id as companyId,' .
                 'company.name as companyName, ' .
-                'users.first_name as userName'
+                'sys_types.name as districtName, ' .
+                'users.first_name as userName, ' .
+                'task_types.name as tasktypeName'
                 )
                 ->where(array('users.id' => $userId))
                 ->join('company', 'company.id=' . $this->table . '.company_id', 'inner')
+                ->join('sys_types', 'sys_types.code=company.district', 'inner')
                 ->join('users', 'users.id=' . $this->table . '.assigned', 'inner')
+                ->join('task_types', 'task_types.id=' . $this->table . '.task_type_id', 'inner')
                 ->get($this->table);
 
         return $query->result();
@@ -89,12 +97,14 @@ class Task_model extends CI_Model {
                 $this->table . '.assigned,' .
                 'company.id as companyId,' .
                 'company.name as companyName, ' .
+                'sys_types.name as districtName, ' .
                 'task_types.id as tasktypeId, ' .
                 'task_types.name as tasktypeName'
 //                'users.first_name as userName'
                 )
                 ->where(array($this->table . '.id' => $id))
                 ->join('company', 'company.id=' . $this->table . '.company_id', 'inner')
+                ->join('sys_types', 'sys_types.code=company.district', 'inner')
                 ->join('task_types', 'task_types.id=' . $this->table . '.task_type_id', 'inner')
 //                ->join('users', 'users.id=' . $this->table . '.assigned', 'left outter')
                 ->get($this->table);

@@ -60,7 +60,7 @@
                             <select id="assigned" name="assigned" class="form-control">
                                 <option value=""> -- 请选择 -- </option>
                                 <?php foreach ($users as $user) :?>
-                                <option value="<?php echo $user->id;?>" <?php echo $task->assigned === $user->id ? 'selected="selected"' : '';?>><?php echo $user->first_name;?> <?php echo $user->last_name;?></option>
+                                <option value="<?php echo $user->id;?>" <?php echo $task->assigned === $user->id ? 'selected="selected"' : '';?>><?php echo $user->first_name;?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
