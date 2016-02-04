@@ -98,3 +98,21 @@
 .box-checking span{
     font-size: 12px;
 }
+
+ul.combobox-selector {
+    list-style: none;
+    background-color: #ccc;
+    padding: 0px;
+    display: none;
+    position: absolute;
+    width: 100%;
+}
+
+ul.combobox-selector li {
+    padding: 5px 10px;
+    cursor: auto;
+}
+
+ul.combobox-selector li:hover {
+    background-color: #eee;
+}

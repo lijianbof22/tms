@@ -18,21 +18,35 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="company" class="form_label">公司</label>
-                            <select id="company_id" name="company_id" class="form-control">
+                            <select id="company_id" name="company_id" class="form-control" style="display:none;">
                                 <option value=""> -- 请选择 -- </option>
                                 <?php foreach ($companies as $company) :?>
                                 <option value="<?php echo $company->id;?>"><?php echo $company->name;?></option>
                                 <?php endforeach;?>
                             </select>
+                            <input id='company_cbb' class='form-control' onkeyup="filterCompany(this)"/>
+                            <ul class="combobox-selector" id='company-selector'>
+                                <?php foreach ($companies as $company) :?>
+                                <li class="normaloption" onclick="selectCompany(<?php echo $company->id;?>, '<?php echo $company->name;?>')"><?php echo $company->name;?></li>
+                                <?php endforeach;?>
+                                <li class='noresultoption' style='display:none;'>没有符合条件的公司</li>
+                            </ul>
                         </div>
                         <div class="form-group">
                             <label for="tasktype" class="form_label">任务类型</label>
-                            <select id="task_type_id" name="task_type_id" class="form-control" onchange="setTaskName(this)">
+                            <select id="task_type_id" name="task_type_id" class="form-control" style="display:none;">
                                 <option value=""> -- 请选择 -- </option>
                                 <?php foreach ($tasktypes as $type) :?>
                                 <option value="<?php echo $type->id;?>"><?php echo $type->name;?></option>
                                 <?php endforeach;?>
                             </select>
+                            <input id='tasktype_cbb' class='form-control' onkeyup="filterTasktype(this)"/>
+                            <ul class="combobox-selector" id='tasktype-selector'>
+                                <?php foreach ($tasktypes as $type) :?>
+                                <li class="normaloption" onclick="selectTasktype(<?php echo $type->id;?>, '<?php echo $type->name;?>')"><?php echo $type->name;?></li>
+                                <?php endforeach;?>
+                                <li class='noresultoption' style='display:none;'>没有符合条件的任务类型</li>
+                            </ul>
                         </div>
                         <div class="form-group">
                             <label for="taskname" class="form_label">任务名称</label>
@@ -58,7 +72,7 @@
                         <div class="form-group">
                             <label for="assigned" class="form_label">任务指派</label>
                             <select id="assigned" name="assigned" class="form-control">
-                                <option value=""> -- 请选择 -- </option>
+                                <option value=""> -- 请选择(如不选择，默认指派给公司管理员) -- </option>
                                 <?php foreach ($users as $user) :?>
                                 <option value="<?php echo $user->id;?>"><?php echo $user->first_name;?></option>
                                 <?php endforeach;?>
@@ -74,5 +88,71 @@
         function setTaskName(obj){
             var tasktype = $(obj).find("option:selected").text();
             $('input#task_name').val(tasktype);
+        }
+
+        function selectCompany(companyId, companyName) {
+            $('#company_cbb').val(companyName);
+            $('#company_id').val(companyId);
+            $('#company-selector').hide();
+        }
+
+        function selectTasktype(tasktypeId, tasktypeName) {
+            $('#tasktype_cbb').val(tasktypeName);
+            $('#task_name').val(tasktypeName);
+            $('#task_type_id').val(tasktypeId);
+            $('#tasktype-selector').hide();
+        }
+
+        function filterCompany(obj) {
+            var numofoptions = 0;
+            var keyword = $(obj).val();
+            if (keyword == '') {
+                $('#company-selector').hide();
+                return;
+            }
+            var options = $('#company-selector li.normaloption');
+            for(var i=0;i<options.length;i++) {
+                var tmp = $(options[i]).text();
+                if (tmp.indexOf(keyword) >= 0) {
+                    $(options[i]).show();
+                    numofoptions++;
+                } else {
+                    $(options[i]).hide();
+                }
+            }
+            if (numofoptions > 0) {
+                $('#company-selector li.noresultoption').hide();
+            } else {
+                $('#company-selector li.noresultoption').show();
+            }
+
+            $('#company-selector').show();
+        }
+
+        function filterTasktype(obj) {
+            var numofoptions = 0;
+            var keyword = $(obj).val();
+            if (keyword == '') {
+                $('#tasktype-selector').hide();
+                return;
+            }
+            var options = $('#tasktype-selector li.normaloption');
+            for(var i=0;i<options.length;i++) {
+                var tmp = $(options[i]).text();
+                console.log(tmp);
+                if (tmp.indexOf(keyword) >= 0) {
+                    $(options[i]).show();
+                    numofoptions++;
+                } else {
+                    $(options[i]).hide();
+                }
+            }
+            if (numofoptions > 0) {
+                $('#tasktype-selector li.noresultoption').hide();
+            } else {
+                $('#tasktype-selector li.noresultoption').show();
+            }
+
+            $('#tasktype-selector').show();
         }
     </script>

@@ -105,11 +105,13 @@
                                 <i class="fa fa-tasks"></i> <span>任务管理</span>
                             </a>
                         </li>
+                        <?php endif;?>
                         <li>
                             <a href="/company/all">
                                 <i class="fa fa-building-o"></i> <span>公司管理</span>
                             </a>
                         </li>
+                        <?php if ($isAdmin):?>
                         <li>
                             <a href="/auth">
                                 <i class="fa fa-users"></i> <span>用户管理</span>

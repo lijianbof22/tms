@@ -30,7 +30,7 @@
                                     </div>
                                 </p>
                                 <p><span><i class='fa fa-map-marker'></i><?php echo $task->districtName;?></span></p>
-                                <p><span><i class='fa fa-briefcase'></i><?php echo substr($task->companyName, 0, 18);?></span></p>
+                                <p><span><i class='fa fa-briefcase'></i><?php echo $task->companyName;?></span></p>
                             </div>
                         </div>
                         <?php } ?>
@@ -56,7 +56,7 @@
                                     </div>
                                 </p>
                                 <p><span><i class='fa fa-map-marker'></i><?php echo $task->districtName;?></span></p>
-                                <p><span><i class='fa fa-briefcase'></i><?php echo substr($task->companyName, 0, 18);?></span></p>
+                                <p><span><i class='fa fa-briefcase'></i><?php echo $task->companyName;?></span></p>
                                 <p><span><i class='fa fa-user'></i><?php echo $task->userName;?></span></p>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                     </div>
                                 </p>
                                 <p><span><i class='fa fa-map-marker'></i><?php echo $task->districtName;?></span></p>
-                                <p><span><i class='fa fa-briefcase'></i><?php echo substr($task->companyName, 0, 18);?></span></p>
+                                <p><span><i class='fa fa-briefcase'></i><?php echo $task->companyName;?></span></p>
                                 <p><span><i class='fa fa-user'></i><?php echo $task->userName;?></span></p>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                                     </div>
                                 </p>
                                 <p><span><i class='fa fa-map-marker'></i><?php echo $task->districtName;?></span></p>
-                                <p><span><i class='fa fa-briefcase'></i><?php echo substr($task->companyName, 0, 18);?></span></p>
+                                <p><span><i class='fa fa-briefcase'></i><?php echo $task->companyName;?></span></p>
                                 <p><span><i class='fa fa-user'></i><?php echo $task->userName;?></span></p>
                             </div>
                         </div>

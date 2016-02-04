@@ -20,7 +20,7 @@ class Task extends CI_Controller
             redirect('dashboard');
         }
 
-        $this->load->model(array('task_model','tasktype_model', 'tasktypestep_model', 'ion_auth_model', 'company_model', 'tasklog_model'));
+        $this->load->model(array('task_model','tasktype_model', 'tasktypestep_model', 'ion_auth_model', 'company_model', 'tasklog_model', 'user_model'));
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
@@ -38,6 +38,10 @@ class Task extends CI_Controller
             $companyId = $this->input->post('company_id');
             $tasktypeId = $this->input->post('task_type_id');
             $assigned = $this->input->post('assigned');
+            if(!$assigned) {
+                $company = $this->company_model->get($companyId);
+                $assigned = $company->assigned;
+            }
 
             $taskId = $this->task_model->create_task(
                 array(
@@ -57,9 +61,13 @@ class Task extends CI_Controller
                 redirect('task/view/' . $taskId);
             }
         } else {
-            $companies = $this->company_model->get_all_for_select();
+            $userId = null;
+            if (!$this->ion_auth->is_admin()) {
+                $userId = $this->ion_auth->get_user_id();
+            }
+            $companies = $this->company_model->get_all_for_select($userId);
             $tasktypes = $this->tasktype_model->get_all_for_select();
-            $users = $this->ion_auth_model->users()->result();
+            $users = $this->user_model->get_all_for_select($userId);
             $this->layout->view('task/form',array('companies' => $companies, 'tasktypes' => $tasktypes, 'users' => $users));
         }
     }
@@ -87,9 +95,13 @@ class Task extends CI_Controller
             redirect('task/view/' . $task['id']);
         } else {
             if($id) {
-                $companies = $this->company_model->get_all_for_select();
+                $userId = null;
+                if (!$this->ion_auth->is_admin()) {
+                    $userId = $this->ion_auth->get_user_id();
+                }
+                $companies = $this->company_model->get_all_for_select($userId);
                 $tasktypes = $this->tasktype_model->get_all_for_select();
-                $users = $this->ion_auth_model->users()->result();
+                $users = $this->user_model->get_all_for_select($userId);
                 $task = $this->task_model->get($id);
                 $this->layout->view('task/edit',array('companies' => $companies, 'tasktypes' => $tasktypes, 'users' => $users, 'task' => $task));
             }

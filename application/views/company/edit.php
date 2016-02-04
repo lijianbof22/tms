@@ -54,6 +54,17 @@
                                 <label for="mobile" class="form_label">移动电话</label>
                                 <input type="text" name="mobile" id="mobile" class="form-control" value="<?php echo $company->mobile;?>" autocomplete="off"/>               
                             </div>
+                            <?php if ($isAdmin):?>
+                            <div class="form-group">
+                                <label for="assigned" class="form_label">公司指派</label>
+                                <select id="assigned" name="assigned" class="form-control">
+                                    <option value=""> -- 请选择 -- </option>
+                                    <?php foreach ($users as $user) :?>
+                                    <option value="<?php echo $user->id;?>" <?php echo $company->assigned == $user->id ? 'selected="selected"' : '';?>><?php echo $user->first_name;?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <?php endif;?>
                             <input type="hidden" name="id" id="id" value="<?php echo $company->id;?>"/>
                             <input type="submit" name="submit" value="更新公司" id="submit_button" class="btn btn-danger" />
                         </div>

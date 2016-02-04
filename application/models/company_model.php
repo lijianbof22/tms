@@ -30,23 +30,46 @@ class Company_model extends CI_Model {
         return $company_id;
     }
 
-    public function get_count()
+    public function get_count($userId)
     {
-        $query = $this->db->get($this->table);
+        if ($userId) {
+            $query = $this->db->where(array('assigned' => $userId))->get($this->table);
+        } else {
+            $query = $this->db->get($this->table);
+        }
 
         return $query->num_rows();
     }
 
-    public function get_all($start, $limit)
+    public function get_all($start, $limit, $userId)
     {
-        $query = $this->db->limit($limit, $start)->get($this->table);
+        $this->db->select($this->table . '.id as id, ' .
+                $this->table . '.name, ' .
+                $this->table . '.district, ' .
+                $this->table . '.contact, ' .
+                $this->table . '.phone, ' . 
+                $this->table . '.mobile, ' .
+                'users.first_name as userName'
+                );
+        $this->db->join('users', 'users.id=' . $this->table . '.assigned', 'inner');
+        $this->db->limit($limit, $start);
+        
+        if ($userId) {
+            $this->db->where(array('assigned' => $userId));
+        }
+
+        $query = $this->db->get($this->table);
 
         return $query->result();
     }
 
-    public function get_all_for_select()
+    public function get_all_for_select($userId)
     {
-        $query = $this->db->select('id, name')->get($this->table);
+        $this->db->select('id, name');
+        if ($userId) {
+            $this->db->where(array('assigned' => $userId));
+        }
+        $query = $this->db->get($this->table);
 
         return $query->result();
     }

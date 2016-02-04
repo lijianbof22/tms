@@ -12,10 +12,6 @@ class Company extends CI_Controller
             redirect("auth/login", 'refresh');
         }
 
-        if (!$this->ion_auth->is_admin()) {
-            redirect('dashboard');
-        }
-
         $this->load->helper(array('url','language'));
 
         $this->load->model(array('company_model', 'systype_model'));
@@ -35,6 +31,11 @@ class Company extends CI_Controller
             $phone = $this->input->post('phone');
             $fax = $this->input->post('fax');
             $mobile = $this->input->post('mobile');
+            if ($this->ion_auth->is_admin()) {
+                $assigned = $this->input->post('assigned');
+            } else {
+                $assigned = $this->ion_auth->get_user_id();
+            }
 
             if ($this->company_model->check_company($companyName)) {
                 
@@ -48,7 +49,8 @@ class Company extends CI_Controller
                     'contact' => $contact,
                     'phone' => $phone,
                     'fax' => $fax,
-                    'mobile' => $mobile
+                    'mobile' => $mobile,
+                    'assigned' => $assigned
                 )
             );
             if ($companyId) {
@@ -56,7 +58,8 @@ class Company extends CI_Controller
             }
         } else {
             $districts = $this->systype_model->get_all_for_select('district');
-            $this->layout->view('company/form',array('districts' => $districts));
+            $users = $this->ion_auth_model->users()->result();
+            $this->layout->view('company/form',array('districts' => $districts, 'users' => $users));
         }
     }
 
@@ -75,6 +78,11 @@ class Company extends CI_Controller
             $company['phone'] = $this->input->post('phone');
             $company['fax'] = $this->input->post('fax');
             $company['mobile'] = $this->input->post('mobile');
+            if ($this->ion_auth->is_admin()) {
+                $company['assigned'] = $this->input->post('assigned');
+            } else {
+                $company['assigned'] = $this->ion_auth->get_user_id();
+            }
 
             $companyId = $this->company_model->update_company($company);
             redirect('company/view/' . $company['id']);
@@ -82,7 +90,8 @@ class Company extends CI_Controller
             if($id) {
                 $company = $this->company_model->get($id);
                 $districts = $this->systype_model->get_all_for_select('district');
-                $this->layout->view('company/edit',array('company' => $company, 'districts' => $districts));
+                $users = $this->ion_auth_model->users()->result();
+                $this->layout->view('company/edit',array('company' => $company, 'districts' => $districts, 'users' => $users));
             }
         }
         
@@ -91,8 +100,12 @@ class Company extends CI_Controller
     public function all($page = 1) {
         $pageNum = 20;
         $offset = ($page - 1) * $pageNum;
-        $companyNum = $this->company_model->get_count();
-        $companies = $this->company_model->get_all($offset, $pageNum);
+        $userId = null;
+        if (!$this->ion_auth->is_admin()) {
+            $userId = $this->ion_auth->get_user_id();
+        }
+        $companyNum = $this->company_model->get_count($userId);
+        $companies = $this->company_model->get_all($offset, $pageNum, $userId);
         $_districts = $this->systype_model->get_all_for_select('district');
         $districts = array();
         foreach ($_districts as $d) {

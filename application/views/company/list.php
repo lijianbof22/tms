@@ -23,6 +23,9 @@
                                     <td>联系人</td>
                                     <td>固定电话</td>
                                     <td>移动电话</td>
+                                    <?php if ($isAdmin):?>
+                                    <td>指派状态</td>
+                                    <?php endif;?>
                                     <td>操作</td>
                                 </tr>
                             </thead>
@@ -33,6 +36,9 @@
                                 <td><?php echo $company->contact;?></td>
                                 <td><?php echo $company->phone;?></td>
                                 <td><?php echo $company->mobile;?></td>
+                                <?php if ($isAdmin):?>
+                                <td><?php echo $company->userName;?></td>
+                                <?php endif;?>
                                 <td>
                                     <a href="/company/edit/<?php echo $company->id;?>">编辑</a>
                                 </td>
